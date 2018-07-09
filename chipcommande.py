@@ -70,10 +70,11 @@ class MQTTb:
             self.client.publish(topic='ping',payload='check')
             
     def on_message_pressions(self,client, userdata, msg):
+        if len(msg.payload)!=9:
             print(msg.payload)
-            capt=int(msg.payload[0])-49
+            capt=client
             print('pos %s' %capt)
-            pression=msg.payload[1:len(msg.payload)]
+            pression=msg.payload
             c.y[capt]=int(pression)
             c.refreshFigure()
 
