@@ -75,7 +75,7 @@ class MQTTb:
             capt=client
             print('pos %s' %capt)
             pression=msg.payload
-            c.y[capt]=int(pression)
+            c.y[capt]=float(pression)
             c.refreshFigure()
 
     def on_publish(self,client, obj , mid):
