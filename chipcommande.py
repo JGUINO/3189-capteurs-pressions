@@ -69,13 +69,13 @@ class MQTTb:
         if len(msg.payload)==7:
             self.client.publish(topic='ping',payload='check')
             
-    def on_message_pressions(self,client, userdata, msg):
+    def on_message_capteur1(self,client, userdata, msg):
         if len(msg.payload)!=9:
             print(msg.payload)
-            capt=int(client)
-            print('pos %s' %capt)
+            
+            
             pression=msg.payload
-            c.y[capt]=float(pression)
+            c.y[1]=float(pression)
             c.refreshFigure()
 
     def on_publish(self,client, obj , mid):
@@ -83,12 +83,12 @@ class MQTTb:
 
 
     def __init__(self):
-        topics=[('ping',2),('pressions',2)]
+        topics=[('ping',2),('capteur 1',2)]
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
         #self.client.username_pw_set(username=None,password=None)
         self.client.on_connect=self.on_connect
         self.client.message_callback_add('ping',self.on_message_ping)
-        self.client.message_callback_add('pressions',self.on_message_pressions)
+        self.client.message_callback_add('capteur 1',self.on_message_pressions)
         self.client.on_message=self.on_message
         self.client.connect(host='192.168.1.124',port=1883)
         self.client.subscribe(topics)
