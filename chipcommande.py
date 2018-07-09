@@ -75,7 +75,7 @@ class MQTTb:
             
             
             pression=msg.payload
-            c.y[1]=float(pression)
+            c.y[0]=float(pression)
             c.refreshFigure()
 
     def on_publish(self,client, obj , mid):
@@ -535,11 +535,11 @@ class capteurs():
         self.line1 = FigSubPlot.bar(x,self.y)
         FigSubPlot.set_xlabel('Capteurs')
         FigSubPlot.set_ylabel('Pression')
-        FigSubPlot.axis([0,4,0,1000])
+        FigSubPlot.axis([0,4,0,10000])
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.ax = self.canvas.figure.axes[0]
         self.ax.set_xlim(-1,4)
-        self.ax.set_ylim(0, 1000)
+        self.ax.set_ylim(0, 10000)
         self.canvas.draw()
         self.canvas.get_tk_widget().place(x=150,y=0)
         self.canvas._tkcanvas.place(x=0,y=0)
