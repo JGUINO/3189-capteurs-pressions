@@ -88,7 +88,7 @@ class MQTTb:
         #self.client.username_pw_set(username=None,password=None)
         self.client.on_connect=self.on_connect
         self.client.message_callback_add('ping',self.on_message_ping)
-        self.client.message_callback_add('capteur 1',self.on_message_pressions)
+        self.client.message_callback_add('capteur 1',self.on_message_capteur1)
         self.client.on_message=self.on_message
         self.client.connect(host='192.168.1.124',port=1883)
         self.client.subscribe(topics)
