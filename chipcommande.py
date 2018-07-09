@@ -72,7 +72,7 @@ class MQTTb:
     def on_message_pressions(self,client, userdata, msg):
         if len(msg.payload)!=9:
             print(msg.payload)
-            capt=userdata
+            capt=str(client)
             print('pos %s' %capt)
             pression=msg.payload
             c.y[capt]=float(pression)
