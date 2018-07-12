@@ -5,6 +5,7 @@ import tkinter as tk
 from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import LED
 from gpiozero import Servo
+from gpiozero import motor
 from time import sleep
 import matplotlib
 matplotlib.use('TKAgg')
@@ -35,6 +36,7 @@ global led1
 global led2
 global led3
 global led4
+motor=[]
 led=[]
 led2=[]
 led1=[]
@@ -126,6 +128,7 @@ class bouton():
 
     def press(self):
         global servo
+        global motor
         global led
         global led1
         global led2
@@ -153,8 +156,8 @@ class bouton():
             else :
                 #led=Servo(16,pin_factory=factory)
                 #servo.value(1)
-                led=LED(self.sortie,pin_factory=factory)
-                led.on()
+                motor=PhaseEnableMotor(5,6,pin_factory=factory)
+                motor.forward()
                 #GPIO.output(self.sortie, True)
             print('Activation de {}'.format(self.sortie))
         except:
@@ -177,6 +180,7 @@ class bouton():
 
     def release():
         global servo
+        global motor
         global led
         global led1
         global led2
@@ -204,11 +208,14 @@ class bouton():
                 led3.off()
             if type(led4)!=list:
                 led4.off()
+            if type(motor)!=list:
+                motor.stop()
         except:
             print('Perte de co?')
             os.execv(__file__,sys.argv)
 
         servo=[]
+        motor=[]
         led=[]
         led1=[]
         led2=[]
