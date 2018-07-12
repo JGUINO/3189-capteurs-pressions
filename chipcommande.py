@@ -165,7 +165,8 @@ class bouton():
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
                 motor=PhaseEnableMotor(5,6,pin_factory=factory)
-                motor.backward()
+                motor.reverse()
+                motor.forward()
             print('Activation de {}'.format(self.sortie))
         except:
             print('Perte de co?')
