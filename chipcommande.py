@@ -157,11 +157,11 @@ class bouton():
                 #led=Servo(16,pin_factory=factory)
                 #servo.value(1)
                 motor=PhaseEnableMotor(5,6,pin_factory=factory)
-                motor.forward()
+                motor.forward(speed=1)
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
                 motor=PhaseEnableMotor(5,6,pin_factory=factory)
-                motor.forward(speed=2)
+                motor.forward(speed=0.5)
             print('Activation de {}'.format(self.sortie))
         except:
             print('Perte de co?')
