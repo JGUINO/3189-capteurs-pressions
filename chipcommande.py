@@ -134,6 +134,7 @@ class bouton():
         global led2
         global led3
         global led4
+        global c
 
         try:
             if type(self.sortie)==list:
