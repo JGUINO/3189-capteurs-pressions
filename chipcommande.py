@@ -3,9 +3,7 @@ import RPi.GPIO as GPIO		# import GPIO
 from tkinter import *
 import tkinter as tk
 from gpiozero.pins.pigpio import PiGPIOFactory
-from gpiozero import LED
-from gpiozero import Servo
-from gpiozero import PhaseEnableMotor
+from gpiozero import *
 from time import sleep
 import matplotlib
 matplotlib.use('TKAgg')
@@ -36,7 +34,7 @@ global led1
 global led2
 global led3
 global led4
-motor=[]
+PWM=[]
 led=[]
 led2=[]
 led1=[]
@@ -128,6 +126,7 @@ class bouton():
 
     def press(self):
         global servo
+        global PWM
         global motor
         global led
         global led1
@@ -164,9 +163,10 @@ class bouton():
                     motor.forward(speed=3000.0/c.y[1])
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
-                motor=PhaseEnableMotor(5,6,pin_factory=factory)
-                motor.reverse()
-                motor.forward()
+                PWM=PWMOutputDevice(5,6,pin_factory=factory)
+                PWM.value = 1 # 0<value<1
+                PWM.on()
+                
             print('Activation de {}'.format(self.sortie))
         except:
             print('Perte de co?')
@@ -188,6 +188,7 @@ class bouton():
 
     def release():
         global servo
+        global PWM
         global motor
         global led
         global led1
@@ -218,11 +219,15 @@ class bouton():
                 led4.off()
             if type(motor)!=list:
                 motor.stop()
+            if type(PWM)!=list:
+                PWM.off()
+                PWM.close
         except:
             print('Perte de co?')
             os.execv(__file__,sys.argv)
 
         servo=[]
+        PWM=[]
         motor=[]
         led=[]
         led1=[]
