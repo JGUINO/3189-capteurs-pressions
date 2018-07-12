@@ -5,7 +5,7 @@ import tkinter as tk
 from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import LED
 from gpiozero import Servo
-from gpiozero import motor
+from gpiozero import PhaseEnableMotor
 from time import sleep
 import matplotlib
 matplotlib.use('TKAgg')
