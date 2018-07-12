@@ -161,7 +161,7 @@ class bouton():
                 if c.y[1]<3000:
                     motor.forward(speed=1)
                 else:
-                    motor.forward(speed=3000/c.y[1])
+                    motor.forward(speed=3000.0/c.y[1])
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
                 motor=PhaseEnableMotor(5,6,pin_factory=factory)
