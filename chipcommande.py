@@ -157,7 +157,10 @@ class bouton():
                 #led=Servo(16,pin_factory=factory)
                 #servo.value(1)
                 motor=PhaseEnableMotor(5,6,pin_factory=factory)
-                motor.forward(speed=1)
+                if c.y[1]<3000:
+                    motor.forward(speed=1)
+                else:
+                    motor.forward(speed=3000/c.y[1])
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
                 motor=PhaseEnableMotor(5,6,pin_factory=factory)
