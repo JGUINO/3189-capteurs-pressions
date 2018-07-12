@@ -153,12 +153,15 @@ class bouton():
                     led4.on()
         
 
-            else :
+            elif self.dire=="up" :
                 #led=Servo(16,pin_factory=factory)
                 #servo.value(1)
                 motor=PhaseEnableMotor(5,6,pin_factory=factory)
                 motor.forward()
                 #GPIO.output(self.sortie, True)
+            elif self.dire=="down":
+                motor=PhaseEnableMotor(5,6,pin_factory=factory)
+                motor.backward()
             print('Activation de {}'.format(self.sortie))
         except:
             print('Perte de co?')
