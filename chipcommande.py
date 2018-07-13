@@ -156,7 +156,7 @@ class bouton():
             elif self.dire=="up" :
                 #led=Servo(16,pin_factory=factory)
                 #servo.value(1)
-                motor=PhaseEnableMotor(5,6,pin_factory=factory)
+                motor=PhaseEnableMotor(18,12,pin_factory=factory)
                 if c.y[1]<3000:
                     motor.forward(speed=1)
                 else:
