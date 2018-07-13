@@ -34,6 +34,7 @@ global led1
 global led2
 global led3
 global led4
+motor=[]
 PWM=[]
 led=[]
 led2=[]
