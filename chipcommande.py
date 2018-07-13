@@ -157,14 +157,14 @@ class bouton():
             elif self.dire=="up" :
                 #led=Servo(16,pin_factory=factory)
                 #servo.value(1)
-                PWM=PWMOutputDevice(18,12,pin_factory=factory)
+                PWM=PWMOutputDevice(18,13,pin_factory=factory)
                 if c.y[1]<3000:
                     PWM.on()
                 else:
                     PWM.value=3000.0/(c.y[1])
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
-                PWM=PWMOutputDevice(18,12,pin_factory=factory)
+                PWM=PWMOutputDevice(18,13,pin_factory=factory)
                 if c.y[1]<3000:
                     PWM.on()
                 else:
