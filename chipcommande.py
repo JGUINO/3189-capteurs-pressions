@@ -161,7 +161,7 @@ class bouton():
                 if c.y[1]<3000:
                     PWM.on()
                 else:
-                    PWM.value=speed=3000.0/(c.y[1])
+                    PWM.value=3000.0/(c.y[1])
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
                 PWM=PWMOutputDevice(18,12,pin_factory=factory)
