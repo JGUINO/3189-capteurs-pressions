@@ -164,7 +164,7 @@ class bouton():
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
                 PWM=PWMOutputDevice(5,6,pin_factory=factory)
-                PWM.value = 1 # 0<value<1
+                PWM.value=0.5
                 PWM.on()
                 
             print('Activation de {}'.format(self.sortie))
