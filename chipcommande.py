@@ -77,7 +77,7 @@ class MQTTb:
             self.client.publish(topic='ping',payload='check')
             
     def on_message_capteur1(self,client, userdata, msg):
-        if len(msg.payload)!=9:  #longueur du msg du capteur. ATTENTION!
+        if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
             print(msg.payload)
             
             
