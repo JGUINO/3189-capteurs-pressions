@@ -30,7 +30,7 @@ class MQTTclient:
     
     def on_message(self,client,userdata,message):
         global n
-        if len(message.payload)==5:
+        if len(message.payload)==5: #supposed to receive "check"
             print(message.payload)
             n=0
             
@@ -53,13 +53,13 @@ class MQTTclient:
         self.client.on_connect=self.on_connect
         self.client.on_message=self.on_message
         self.client.on_publish=self.on_publish
-        self.client.connect(host='192.168.1.124',port=1883)
+        self.client.connect(host='192.168.1.124',port=1883) #Host local IP address
         self.client.subscribe(topic='ping',qos=0)
 global n
 mqttclie=MQTTclient()
 mqttclie.client.loop_start()
 n=0
-while True:
+while True: #MODIFY TO FIT THE COMMANDS!!!!!!
     #if ping('192.168.1.124'):
         #print ('Bonne connexion')
         
@@ -75,11 +75,11 @@ while True:
         LED(21).off()
         print('commandes éteintes')
         n=0
-        time.sleep(10)
+        time.sleep(10) #time in sec before the next ping when connection is lost
     else:
         print('Bonne connexion')
         
     mqttclie.publish('cocheck')
-    time.sleep(0.5)
+    time.sleep(0.5) #Time before next ping when everything is fine
     n=n+1
 
