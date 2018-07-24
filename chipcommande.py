@@ -90,7 +90,7 @@ class MQTTb:
 
 
     def __init__(self):
-        topics=[('ping',2),('capteur 1',2)] #One topic for each sensor
+        topics=[('ping',2),('capteur 1',2)] #One topic for each sensor + one ping topic for all
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
         #self.client.username_pw_set(username=None,password=None)
         self.client.on_connect=self.on_connect
