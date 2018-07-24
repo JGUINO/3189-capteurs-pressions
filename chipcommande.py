@@ -1,3 +1,9 @@
+
+#Be careful, the script can (maybe) crash when commanding while connection with the enslaved device is lost
+#DON'T USE THE COMMANDS WITHOUT THE PING CHECKER !!!!!!
+
+
+
 import RPi.GPIO as GPIO		# import GPIO
 #import paho.mqtt.client as mqtt
 from tkinter import *
