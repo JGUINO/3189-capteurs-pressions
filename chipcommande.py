@@ -15,11 +15,11 @@ import os
 import sys
 
 fenetre = tk.Tk()
-downarrow=PhotoImage(file='arrowdown.gif')
+downarrow=PhotoImage(file='arrowdown.gif') #buttons gif
 uparrow=PhotoImage(file='arrowup.gif')
 
 global boutons
-factory = PiGPIOFactory(host='192.168.1.127')
+factory = PiGPIOFactory(host='192.168.1.127') #remote device local ip
 coffrage=[]
 pieds=[]
 numpadb=[7,8,9,4,5,6,1,2,3,0]
@@ -42,7 +42,7 @@ led1=[]
 led3=[]
 led4=[]
 
-framec=Frame(fenetre,height=190,width=720,bg="green")
+framec=Frame(fenetre,height=190,width=720,bg="green") #frame color !
 #framec.place(x=0,y=30)
 Label(framec,text='Simple',font=(25)).place(x=630,y=30)
 
@@ -71,7 +71,7 @@ class MQTTb:
             self.client.publish(topic='ping',payload='check')
             
     def on_message_capteur1(self,client, userdata, msg):
-        if len(msg.payload)!=9:
+        if len(msg.payload)!=9:  #longueur du msg du capteur. ATTENTION!
             print(msg.payload)
             
             
@@ -84,14 +84,14 @@ class MQTTb:
 
 
     def __init__(self):
-        topics=[('ping',2),('capteur 1',2)]
+        topics=[('ping',2),('capteur 1',2)] #One topic for each sensor
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
         #self.client.username_pw_set(username=None,password=None)
         self.client.on_connect=self.on_connect
         self.client.message_callback_add('ping',self.on_message_ping)
         self.client.message_callback_add('capteur 1',self.on_message_capteur1)
         self.client.on_message=self.on_message
-        self.client.connect(host='192.168.1.124',port=1883)
+        self.client.connect(host='192.168.1.124',port=1883) #Host's IP address
         self.client.subscribe(topics)
         
         
@@ -101,9 +101,9 @@ class bouton():
     def __init__(self,nom,sortie,ip,typ,dire):
         self.sortie=sortie
         self.ip=ip
-        self.typ=typ
+        self.typ=typ #
         self.nom=nom
-        self.dire=dire
+        self.dire=dire #direction for arrow.gif
         
         GPIO.setmode(GPIO.BCM)
         self.button=tk.Button(fenetre)
@@ -125,7 +125,7 @@ class bouton():
             GPIO.setup(self.sortie,GPIO.OUT)
             GPIO.output(self.sortie, False)
 
-    def press(self):
+    def press(self): #Still to be adapted to the needs!!!
         global servo
         global PWM
         global motor
@@ -154,7 +154,7 @@ class bouton():
                     led4.on()
         
 
-            elif self.dire=="up" :
+            elif self.dire=="up" : #TO BE MODIFIED!!!!!!
                 #led=Servo(16,pin_factory=factory)
                 #servo.value(1)
                 PWM=PWMOutputDevice(18,13,pin_factory=factory)
@@ -165,10 +165,10 @@ class bouton():
                 #GPIO.output(self.sortie, True)
             elif self.dire=="down":
                 PWM=PWMOutputDevice(18,13,pin_factory=factory)
-                if c.y[1]<3000:
+                if c.y[1]<3000: #Normal running
                     PWM.on()
                 else:
-                    PWM.value=3000/(c.y[1]) # 0 < value < 1
+                    PWM.value=3000/(c.y[1]) # 0 < value < 1 in order to control pwr
                 
             print('Activation de {}'.format(self.sortie))
         except:
@@ -189,7 +189,7 @@ class bouton():
         
 
 
-    def release():
+    def release(): #Still to be adapted to the needs!!!
         global servo
         global PWM
         global motor
@@ -251,7 +251,7 @@ class bouton():
         for i in boutons:
             i.button.config(state=NORMAL)
 
-clf1=Label(text="Avant",bg='green')
+clf1=Label(text="Avant",bg='green') #Left Front
 clf2=Label(text="gauche",bg='green')
 crf1=Label(text="Avant",bg='green')
 crf2=Label(text="droit",bg='green')
@@ -276,7 +276,7 @@ pied3=Label(text="Pied 3",bg="green")
 pied4=Label(text="Pied 4",bg="green")
 plab=[pied1,pied2,pied3,pied4]
 
-class numpad(tk.Frame):
+class numpad(tk.Frame):     #No changes needed except for design :p
     def __init__(self,fenetre,outil):
         global c
         try:
@@ -300,7 +300,7 @@ class numpad(tk.Frame):
         self.pw=[]
         self.numpad_create()
         self.correct=Label(text='Correct',font=50,height=3,width=9,bg='grey',fg='green')
-        self.cred=Label(text='Owner:G.Guillon',font=50,height=3,width=15,bg='grey',fg='navy')
+        self.cred=Label(text='Code by G.Guillon',font=50,height=3,width=15,bg='grey',fg='navy')
         self.incorrect=Label(text='Incorrect',font=50,height=3,width=9,bg='grey',fg='red')
         
     
@@ -412,7 +412,6 @@ class numpad(tk.Frame):
             self.incorrect.grid_forget()
             self.afficheroutil()
             self.pw=[]
-
         if self.pw==[0,5,0,9,1,9,9,6]:
             self.cred.place(x=0,y=50)
             self.pw=[]
@@ -433,7 +432,7 @@ class numpad(tk.Frame):
         self.pad8.grid_forget()
         self.pad9.grid_forget()
 
-    def afficheroutil(self):
+    def afficheroutil(self): #Modify cmd design here !!
         self.oublie()
         self.valid.grid_forget()
         self.corriger.grid_forget()
@@ -508,7 +507,7 @@ class numpad(tk.Frame):
         framec.place(x=0,y=30)
         framep.place(x=0,y=230)
 
-class capteurs():
+class capteurs(): #Graph's class, modify design here
     def __init__(self,parent):
         global num
         try:
@@ -578,18 +577,7 @@ class capteurs():
             rect.set_height(h)
         self.canvas.draw()
         
-        print('graph raffraichit')
-    def OnButtonClick(self):
-        # file is opened here and some data is taken
-        # I've just set some arrays here so it will compile alone
-        x=[1,2,3,4]
-        y=[300,870,604,330]
-        #for num in range(0,1000):x.append(num*.001+1)
-        # just some random function is given here, the real data is a UV-Vis spectrum
-        #for num2 in range(0,1000):y.append(sc.math.sin(num2*.06)+sc.math.e**(num2*.001))
-        X = x
-        Y = y
-        self.refreshFigure(X,Y)
+        #print('graph raffraichit')
     
     def suppr(self):
         
@@ -620,15 +608,15 @@ pbw=bouton('bw',[2,4,6,8],'192.168.1.117','pied','down')
 pieds.append(pfw)
 pieds.append(pbw)
 
-clfu=bouton('lfu',9,'192.168.1.117','coffrage','up')
+clfu=bouton('lfu',9,'192.168.1.117','coffrage','up') #Left Front Up
 clfd=bouton('lfd',10,'192.168.1.117','coffrage','down')
 crfu=bouton('rfu',11,'192.168.1.117','coffrage','up')
 crfd=bouton('rfd',12,'192.168.1.117','coffrage','down')
-clmu=bouton('lmu',13,'192.168.1.117','coffrage','up')
+clmu=bouton('lmu',13,'192.168.1.117','coffrage','up') #Left Mid Up
 clmd=bouton('lmd',14,'192.168.1.117','coffrage','down')
 crmu=bouton('rmu',15,'192.168.1.117','coffrage','up')
 crmd=bouton('rmd',16,'192.168.1.117','coffrage','down')
-clbu=bouton('lbu',17,'192.168.1.117','coffrage','up')
+clbu=bouton('lbu',17,'192.168.1.117','coffrage','up') #Left Back Up
 clbd=bouton('lbd',18,'192.168.1.117','coffrage','down')
 crbu=bouton('rbu',19,'192.168.1.117','coffrage','up')
 crbd=bouton('rbd',20,'192.168.1.117','coffrage','down')
@@ -636,7 +624,7 @@ cfu=bouton('fu',[9,11],'192.168.1.117','coffrage','up')
 cfd=bouton('fd',[10,12],'192.168.1.117','coffrage','down')
 cbu=bouton('bu',[17,19],'192.168.1.117','coffrage','up')
 cbd=bouton('bd',[18,20],'192.168.1.117','coffrage','down')
-cup=bouton('up',[9,11,17,19],'192.168.1.117','coffrage','up')
+cup=bouton('up',[9,11,17,19],'192.168.1.117','coffrage','up') #Up all
 cdo=bouton('do',[10,12,18,20],'192.168.1.117','coffrage','down')
 
 coffrage.append(clfu)
