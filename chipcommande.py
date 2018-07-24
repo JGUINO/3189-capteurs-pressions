@@ -73,7 +73,7 @@ class MQTTb:
         
     def on_message_ping(self,client, usedata, msg):
         print(msg.payload)
-        if len(msg.payload)==7:
+        if len(msg.payload)==7: #for "cocheck"
             self.client.publish(topic='ping',payload='check')
             
     def on_message_capteur1(self,client, userdata, msg):
