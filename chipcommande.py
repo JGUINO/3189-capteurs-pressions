@@ -79,10 +79,26 @@ class MQTTb:
     def on_message_capteur1(self,client, userdata, msg):
         if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
             print(msg.payload)
-            
-            
             pression=msg.payload
             c.y[0]=float(pression)
+            c.refreshFigure()
+    def on_message_capteur2(self,client, userdata, msg):
+        if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
+            print(msg.payload)
+            pression=msg.payload
+            c.y[1]=float(pression)
+            c.refreshFigure()
+    def on_message_capteur3(self,client, userdata, msg):
+        if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
+            print(msg.payload)
+            pression=msg.payload
+            c.y[2]=float(pression)
+            c.refreshFigure()
+    def on_message_capteur4(self,client, userdata, msg):
+        if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
+            print(msg.payload)
+            pression=msg.payload
+            c.y[3]=float(pression)
             c.refreshFigure()
 
     def on_publish(self,client, obj , mid):
@@ -90,12 +106,15 @@ class MQTTb:
 
 
     def __init__(self):
-        topics=[('ping',2),('capteur 1',2)] #One topic for each sensor + one ping topic for all commands
+        topics=[('ping',2),('capteur 1',2),('capteur 2',2),('capteur 3',2),('capteur4',2)] #One topic for each sensor + one ping topic for all commands
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
         #self.client.username_pw_set(username=None,password=None)
         self.client.on_connect=self.on_connect
         self.client.message_callback_add('ping',self.on_message_ping)
         self.client.message_callback_add('capteur 1',self.on_message_capteur1)
+        self.client.message_callback_add('capteur 2',self.on_message_capteur2)
+        self.client.message_callback_add('capteur 3',self.on_message_capteur3)
+        self.client.message_callback_add('capteur 4',self.on_message_capteur4)
         self.client.on_message=self.on_message
         self.client.connect(host='192.168.1.124',port=1883) #Host's IP address
         self.client.subscribe(topics)
