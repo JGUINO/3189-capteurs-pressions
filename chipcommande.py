@@ -77,25 +77,25 @@ class MQTTb:
             self.client.publish(topic='ping',payload='check')
             
     def on_message_capteur1(self,client, userdata, msg):
-        if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
+        if len(msg.payload)!=9:  #CAREFUL!
             print(msg.payload)
             pression=msg.payload
             c.y[0]=float(pression)
             c.refreshFigure()
     def on_message_capteur2(self,client, userdata, msg):
-        if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
+        if len(msg.payload)!=9:  
             print(msg.payload)
             pression=msg.payload
             c.y[1]=float(pression)
             c.refreshFigure()
     def on_message_capteur3(self,client, userdata, msg):
-        if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
+        if len(msg.payload)!=9:  
             print(msg.payload)
             pression=msg.payload
             c.y[2]=float(pression)
             c.refreshFigure()
     def on_message_capteur4(self,client, userdata, msg):
-        if len(msg.payload)!=9:  #lenght of sensor's msg. CAREFUL!
+        if len(msg.payload)!=9:  
             print(msg.payload)
             pression=msg.payload
             c.y[3]=float(pression)
