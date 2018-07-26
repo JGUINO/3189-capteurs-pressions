@@ -126,7 +126,7 @@ class bouton():
     def __init__(self,nom,sortie,ip,typ,dire):
         self.sortie=sortie
         self.ip=ip
-        self.typ=typ #
+        self.typ=typ #'pied' or 'coffrage'
         self.nom=nom
         self.dire=dire #direction for arrow.gif
         
