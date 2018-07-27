@@ -1,5 +1,5 @@
 
-#Be careful, the script can (maybe) crash when commanding while connection with the enslaved device is lost
+#Be careful, the script may crash when connection with the enslaved device is lost
 #DON'T USE THE COMMANDS WITHOUT THE PING CHECKER !!!!!!
 
 
@@ -25,7 +25,7 @@ downarrow=PhotoImage(file='arrowdown.gif') #buttons gif
 uparrow=PhotoImage(file='arrowup.gif')
 
 global boutons
-factory = PiGPIOFactory(host='192.168.1.127') #remote device local ip
+factory = PiGPIOFactory(host='192.168.1.127') #remote device local IP address
 coffrage=[]
 pieds=[]
 numpadb=[7,8,9,4,5,6,1,2,3,0]
