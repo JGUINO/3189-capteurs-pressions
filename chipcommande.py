@@ -13,7 +13,7 @@ from gpiozero import *
 from time import sleep
 import matplotlib
 matplotlib.use('TKAgg')
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 import matplotlib.pyplot as pltlib
 import paho.mqtt.client as mqttc
