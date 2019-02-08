@@ -25,7 +25,7 @@ downarrow=PhotoImage(file='arrowdown.gif') #buttons gif
 uparrow=PhotoImage(file='arrowup.gif')
 
 global boutons
-factory = PiGPIOFactory(host='192.168.1.125') #remote device local IP address
+factory = PiGPIOFactory(host='192.168.1.125',port='8889') #remote device local IP address
 coffrage=[]
 pieds=[]
 numpadb=[7,8,9,4,5,6,1,2,3,0]
