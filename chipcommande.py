@@ -25,7 +25,7 @@ downarrow=PhotoImage(file='arrowdown.gif') #buttons gif
 uparrow=PhotoImage(file='arrowup.gif')
 
 global boutons
-factory = PiGPIOFactory(host='192.168.1.127') #remote device local IP address
+factory = PiGPIOFactory(host='192.168.1.125') #remote device local IP address
 coffrage=[]
 pieds=[]
 numpadb=[7,8,9,4,5,6,1,2,3,0]
@@ -116,7 +116,7 @@ class MQTTb:
         self.client.message_callback_add('capteur 3',self.on_message_capteur3)
         self.client.message_callback_add('capteur 4',self.on_message_capteur4)
         self.client.on_message=self.on_message
-        self.client.connect(host='192.168.1.124',port=1883) #Host's IP address
+        self.client.connect(host='192.168.1.36',port=1883) #Host's IP address
         self.client.subscribe(topics)
         
         

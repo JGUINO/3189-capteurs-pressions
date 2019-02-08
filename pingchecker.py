@@ -53,7 +53,7 @@ class MQTTclient:
         self.client.on_connect=self.on_connect
         self.client.on_message=self.on_message
         self.client.on_publish=self.on_publish
-        self.client.connect(host='192.168.1.124',port=1883) #Host local IP address
+        self.client.connect(host='192.168.1.36',port=1883) #Host local IP address
         self.client.subscribe(topic='ping',qos=0)
 global n
 mqttclie=MQTTclient()
