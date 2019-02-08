@@ -177,9 +177,11 @@ class bouton():
                     led2.on()
                     led3.on()
                     led4.on()
-        
+            else:
+                led=LED(self.sortie,pin_factory=factory)
+                led.on()
 
-            elif self.dire=="up" : #TO BE MODIFIED!!!!!!
+            """ elif self.dire=="up" : #TO BE MODIFIED!!!!!!
                 #led=Servo(16,pin_factory=factory)
                 #servo.value(1)
                 PWM=PWMOutputDevice(18,13,pin_factory=factory)
@@ -193,7 +195,7 @@ class bouton():
                 if c.y[1]<3000: #Normal running
                     PWM.on()
                 else:
-                    PWM.value=3000/(c.y[1]) # 0 < value < 1 in order to control pwr
+                    PWM.value=3000/(c.y[1]) """ # 0 < value < 1 in order to control pwr
                 
             print('Activation de {}'.format(self.sortie))
         except:
@@ -245,11 +247,11 @@ class bouton():
                 led3.off()
             if type(led4)!=list:
                 led4.off()
-            if type(motor)!=list:
+            """ if type(motor)!=list:
                 motor.stop()
             if type(PWM)!=list:
                 PWM.off()
-                PWM.close
+                PWM.close """
         except:
             print('Perte de co?')
             os.execv(__file__,sys.argv)
