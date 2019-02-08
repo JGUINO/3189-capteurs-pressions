@@ -633,7 +633,7 @@ pbw=bouton('bw',[2,4,6,8],'192.168.1.117','pied','down')
 pieds.append(pfw)
 pieds.append(pbw)
 
-clfu=bouton('lfu',9,'192.168.1.117','coffrage','up') #Left Front Up
+clfu=bouton('lfu',0,'192.168.1.117','coffrage','up') #Left Front Up
 clfd=bouton('lfd',10,'192.168.1.117','coffrage','down')
 crfu=bouton('rfu',11,'192.168.1.117','coffrage','up')
 crfd=bouton('rfd',12,'192.168.1.117','coffrage','down')
